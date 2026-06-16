@@ -1,0 +1,105 @@
+/* ==========================================
+   プロフィールページ（show.html.erb）のスタイル
+   ========================================== */
+.user-profile-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.user-profile-page .page-header {
+  margin-bottom: 25px;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* プロフィール情報カード */
+.profile-card {
+  background-color: #ffffff;
+  border: 1px solid #e1e9f0;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-width: 280px;
+}
+
+.profile-item {
+  font-size: 1rem;
+  color: #333333;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.profile-label {
+  font-weight: bold;
+  color: #2b3d51; /* 落ち着いたネイビー */
+  margin-right: 5px;
+}
+
+.profile-bio {
+  background-color: #f8fafc;
+  padding: 12px;
+  border-radius: 12px;
+  border-left: 4px solid #0084ff;
+  margin-top: 5px;
+}
+
+/* 編集ボタンのスタイリング */
+.profile-edit-btn {
+  background-color: #f8f9fa;
+  border: 1px solid #e1e9f0;
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-weight: bold;
+  color: #555555 !important;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.profile-edit-btn:hover {
+  background-color: #e3f2fd;
+  border-color: #0084ff;
+  color: #0084ff !important;
+}
+
+/* セクションタイトル（詳細ページのスタイルを継承・調整） */
+.user-profile-page .section-title {
+  font-size: 1.2rem;
+  color: #2b3d51;
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #0084ff;
+  padding-bottom: 10px;
+}
+
+/* 投稿・いいねが空の時の通知 */
+.empty-notice {
+  color: #6c757d;
+  font-size: 0.95rem;
+  font-style: italic;
+  margin: 10px 0;
+}
+
+/* ページ下部ナビゲーション */
+.user-profile-page .page-navigation {
+  margin-top: 30px;
+  border-top: 1px solid #e1e9f0;
+  padding-top: 20px;
+}

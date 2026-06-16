@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Student Witter" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+
+
+
+  <body>
+
+<header class="main-header">
+  <div class="header-item logo-item">
+    <%= link_to "StudenTwitter", tweets_path, class: "header-logo" %>
+    </div>
+
+  <div class="header-item">
+    <% if user_signed_in? %>
+      <%= link_to "マイページ", user_path(current_user.id) %>
+    <% else %>
+      <%= link_to "ログイン", new_user_session_path %>
+    
+    <% end %>
+  </div>
+
+  <div class="header-item">
+    <%= link_to "新規投稿", new_tweet_path %>
+  </div>
+
+  <div class="header-item">
+    <%= form_tag({controller:"/tweets",action:"index"}, method: :get) do %>
+    <%= text_field_tag :search %>
+    <%= submit_tag '検索する'  %>
+  <% end %>
+    </div>
+</header>
+
+  
+ <main>
+    <%= yield %>
+ </main>
+ </body>
+</html>

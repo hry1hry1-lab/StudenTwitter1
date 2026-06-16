@@ -1,0 +1,450 @@
+/* 一覧ページ index.html.erb */
+h1 {
+  color: #2b3d51; /* 少し落ち着いたネイビー */
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+
+/* 象のマスコット */
+.elephant-mascot-wrapper {
+  max-width: 480px;
+  margin: 0 auto 30px auto;
+}
+
+
+h2 {
+  color: #6c757d;
+  font-size: 1.1rem;
+  font-weight: normal;
+  margin-bottom: 25px;
+}
+
+/* ツイート全体のレイアウト（2カラムのグリッド配置） */
+.tweets-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  gap: 20px;
+}
+
+/* 各ツイートカードのスタイル */
+.tweet {
+  background-color: #ffffff;
+  border: 1px solid #e1e9f0;
+  border-radius: 12px; /* カードの角を丸くして優しく */
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03); /* ほんのり浮き出させる影 */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 各項目の見栄え調整 */
+.tweet div {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* ジャンルタグ風のデザイン */
+.tweet div:nth-child(2) {
+  display: inline-block;
+  align-self: flex-start;
+  background-color: #e3f2fd; /* 淡い水色 */
+  color: #007acc;            /* 濃い水色 */
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* タイトルを強調 */
+.tweet div:nth-child(3) {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #2b3d51;
+}
+
+/* 添付画像 */
+.tweet img {
+  border-radius: 8px;
+  object-fit: cover;
+  margin-top: 5px;
+}
+
+/* いいねボタン周辺 */
+.tweet button {
+  background: none;
+  border: none;
+  color: #e0245e; /* ハートのピンク・赤系 */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+  padding: 0;
+}
+
+/* 詳細・編集・削除ボタンの並び */
+.tweet p {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #f0f3f5;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+/* 削除ボタンだけ赤文字のリンク風にする調整 */
+.tweet p form {
+  display: inline;
+}
+.tweet p button {
+  color: #dc3545;
+  font-size: 0.95rem;
+  font-weight: normal;
+}
+.tweet p button:hover {
+  text-decoration: underline;
+}
+
+/* カード全体を横並び（Flexbox）にする */
+.tweet-card {
+  display: flex;
+  justify-content: space-between; /* 左右に分散配置 */
+  align-items: flex-start;        /* 上揃え */
+  gap: 16px;                
+  overflow: hidden;  /* ← はみ出た要素を強制的に隠す */      /* テキストと画像の間の余白 */
+}
+
+/* 左側のテキストエリア */
+.tweet-main-content {
+  flex: 1; /* 残りの幅をすべて占有させる */
+}
+
+/* 右側の画像エリア */
+.tweet-image {
+  flex-shrink: 0; /* 画像ブロックが潰れないようにする */
+  width: 160px;     /* カード全体に対する画像の横幅（好みに応じて20%〜40%等に調整） */
+  max-width: 160px; /* 必要に応じて最大横幅を固定 */
+}
+
+/* 画像自体のレスポンシブ対応 */
+.tweet-image img {
+  width: 100%;
+  height: 160px;
+  display: block; 
+  object-fit: cover; /* 枠線に合わせて綺麗に収める場合 */
+  border-radius: 8px; /* 好みで角を丸くする */
+}
+
+/*show.html.erb*/
+/* ==========================================
+   詳細ページ（show.html.erb）の全体レイアウト
+   ========================================== */
+.tweet-show-page {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.tweet-show-page .page-header {
+  margin-bottom: 25px;
+}
+
+/* 左右2カラムの配置（PCでは横並び、スマホでは自動で縦並び） */
+.show-container {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap; 
+}
+
+/* 左側：ツイート詳細情報のエリア */
+.tweet-main-content {
+  flex: 1;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 右側：メインとなるコメントエリア（1.5倍広くして主役に） */
+.comment-section {
+  flex: 1.5;
+  min-width: 350px;
+  background-color: #ffffff;
+  border: 1px solid #e1e9f0;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+/* ==========================================
+   左側：ツイートカード・いいね周辺のスタイル
+   ========================================== */
+.tweet-card {
+  background-color: #ffffff;
+  border: 1px solid #e1e9f0;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.tweet-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #888888;
+  margin-bottom: 15px;
+}
+
+.tweet-genre {
+  background-color: #e3f2fd;
+  color: #0084ff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.tweet-time {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+.tweet-title {
+  font-size: 1.4rem;
+  color: #2b3d51;
+  margin: 0 0 15px 0;
+}
+
+.tweet-body {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #333333;
+  white-space: pre-wrap;
+  margin-bottom: 20px;
+}
+
+/* いいねボタンと数値の横並び調整 */
+.tweet-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* いいねボタン単体 */
+.like-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #f8f9fa;
+  border: 1px solid #e1e9f0;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  color: #555555 !important;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.like-btn:hover {
+  background-color: #ffeef2;
+  border-color: #ffa8b6;
+}
+.like-btn.liked {
+  background-color: #ffeef2;
+  border-color: #ffa8b6;
+  color: #e0245e !important;
+}
+
+/* 完全に分離させた独立した数字デザイン */
+.like-count-display {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #e0245e;
+  background-color: #fff0f3;
+  padding: 4px 12px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.like-status {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+/* いいねしたユーザー一覧ボックス */
+.liked-users-box {
+  background-color: #ffffff;
+  border: 1px solid #e1e9f0;
+  border-radius: 12px;
+  padding: 15px;
+}
+.liked-users-box h4 {
+  margin: 0 0 10px 0;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+.liked-users-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.liked-users-box li {
+  background-color: #f1f3f5;
+  padding: 4px 10px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  color: #495057;
+}
+.liked-users-box li.no-users {
+  background: none;
+  color: #adb5bd;
+  padding: 0;
+}
+
+/* ==========================================
+   右側：コメント機能関連のスタイル
+   ========================================== */
+.section-title {
+  font-size: 1.2rem;
+  color: #2b3d51;
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #0084ff;
+  padding-bottom: 10px;
+}
+
+.comments-list {
+  max-height: 420px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.comment-item {
+  background-color: #f8fafc;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-left: 4px solid #0084ff;
+}
+
+.comment-user {
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: #0084ff;
+  margin-bottom: 5px;
+}
+
+.comment-content {
+  font-size: 0.95rem;
+  color: #333333;
+  line-height: 1.4;
+}
+
+/* 【画像を使わない新しいデザイン】誰もコメントしていないときの案内枠 */
+.empty-comment-placeholder {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%); /* さわやかな淡い水色のグラデーション */
+  border-radius: 16px;
+  border: 2px dashed #a5d8ff; /* 爽やかなライトブルーの点線枠 */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.01);
+  margin: 20px 0;
+}
+
+/* 中央に表示する大きめの吹き出し絵文字 */
+.placeholder-icon {
+  font-size: 3.2rem;
+  margin-bottom: 12px;
+  animation: pulse 2s infinite; /* ほんのり鼓動のように動かすアニメーション */
+  display: inline-block;
+}
+
+.placeholder-text {
+  font-size: 1.05rem;
+  color: #495057;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.placeholder-text strong {
+  color: #0084ff;
+  font-size: 1.2rem;
+  display: inline-block;
+  margin-top: 6px;
+}
+
+/* 絵文字をふわふわ動かすCSSアニメーションの定義 */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* コメント入力エリア */
+.comment-form-area textarea {
+  width: 100%;
+  height: 90px;
+  padding: 12px;
+  border: 1px solid #ced4da;
+  border-radius: 12px;
+  resize: none;
+  font-family: inherit;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  margin-bottom: 12px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.comment-form-area textarea:focus {
+  border-color: #0084ff;
+}
+
+.comment-submit-btn {
+  background-color: #0084ff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  transition: background-color 0.2s;
+}
+.comment-submit-btn:hover {
+  background-color: #0066cc;
+}
+
+.login-notice {
+  font-size: 0.9rem;
+  color: #6c757d;
+  text-align: center;
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* ==========================================
+   ページ下部ナビゲーション
+   ========================================== */
+.page-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.back-link {
+  color: #6c757d;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+.back-link:hover {
+  color: #333333;
+}
+.edit-link {
+  color: #0084ff;
+  font-size: 0.9rem;
+  font-weight: bold;
+}

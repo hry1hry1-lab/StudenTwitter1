@@ -1,0 +1,13 @@
+class CreateTweets < ActiveRecord::Migration[7.2]
+  def change
+    create_table :tweets do |t|
+      t.string :genre
+      t.string :title
+      t.text :contents
+      t.string :image
+      t.string :video
+
+      t.timestamps
+    end
+  end
+end

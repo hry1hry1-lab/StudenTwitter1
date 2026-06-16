@@ -1,0 +1,115 @@
+<div class="tweets-index-page">
+
+  <div class="elephant-mascot-wrapper">
+    <svg width="100%" viewBox="0 0 480 400" role="img" xmlns="http://www.w3.org/2000/svg">
+      <title>知恵のある象のマスコット</title>
+      <desc>眼鏡をかけた象が吹き出しで話しているイラスト</desc>
+
+      <!-- 吹き出し -->
+      <rect x="200" y="20" width="265" height="215" rx="18" fill="#e3f2fd" stroke="#a5d8ff" stroke-width="1.5"/>
+      <polygon points="200,85 178,100 200,115" fill="#e3f2fd" stroke="#a5d8ff" stroke-width="1.5"/>
+
+      <text x="222" y="58"  font-family="sans-serif" font-size="18" font-weight="bold" fill="#007acc">ワシに任せるゾウ！</text>
+      <text x="222" y="90"  font-family="sans-serif" font-size="16" fill="#2b3d51">このツイート一覧、</text>
+      <text x="222" y="114" font-family="sans-serif" font-size="16" fill="#2b3d51">知恵が詰まってるゾウ。</text>
+      <text x="222" y="146" font-family="sans-serif" font-size="16" fill="#2b3d51">気になったものには</text>
+      <text x="222" y="170" font-family="sans-serif" font-size="16" fill="#2b3d51">ぜひいいねして、</text>
+      <text x="222" y="202" font-family="sans-serif" font-size="16" fill="#2b3d51">参考にしてほしいゾウ！</text>
+
+      <!-- 体 -->
+      <ellipse cx="110" cy="265" rx="90" ry="75" fill="#90a4ae"/>
+      <!-- 頭 -->
+      <ellipse cx="110" cy="172" rx="66" ry="62" fill="#90a4ae"/>
+      <!-- 耳（左） -->
+      <ellipse cx="50" cy="172" rx="30" ry="38" fill="#78909c"/>
+      <!-- 耳（右） -->
+      <ellipse cx="170" cy="172" rx="25" ry="33" fill="#78909c"/>
+      <!-- 鼻 -->
+      <path d="M 95 218 Q 75 262 86 300 Q 94 322 110 318 Q 122 316 118 298 Q 113 274 118 248" fill="none" stroke="#78909c" stroke-width="18" stroke-linecap="round"/>
+      <!-- 足 -->
+      <rect x="42"  y="322" width="33" height="48" rx="9" fill="#78909c"/>
+      <rect x="84"  y="322" width="33" height="48" rx="9" fill="#78909c"/>
+      <rect x="120" y="322" width="33" height="48" rx="9" fill="#78909c"/>
+      <rect x="158" y="322" width="33" height="48" rx="9" fill="#78909c"/>
+      <!-- 眼鏡 -->
+      <circle cx="94"  cy="158" r="17" fill="white" stroke="#2b3d51" stroke-width="2.5"/>
+      <circle cx="130" cy="158" r="17" fill="white" stroke="#2b3d51" stroke-width="2.5"/>
+      <line x1="111" y1="158" x2="113" y2="158" stroke="#2b3d51" stroke-width="2.5"/>
+      <line x1="77"  y1="154" x2="58"  y2="148" stroke="#2b3d51" stroke-width="2.5"/>
+      <line x1="147" y1="154" x2="166" y2="148" stroke="#2b3d51" stroke-width="2.5"/>
+      <!-- 目 -->
+      <circle cx="94"  cy="158" r="7" fill="#1a237e"/>
+      <circle cx="97"  cy="155" r="2" fill="white"/>
+      <circle cx="130" cy="158" r="7" fill="#1a237e"/>
+      <circle cx="133" cy="155" r="2" fill="white"/>
+      <!-- 本 -->
+      <rect x="168" y="234" width="46" height="60" rx="4" fill="#0084ff"/>
+      <rect x="170" y="236" width="42" height="56" rx="3" fill="#e3f2fd"/>
+      <line x1="180" y1="246" x2="206" y2="246" stroke="#90caf9" stroke-width="1.5"/>
+      <line x1="177" y1="258" x2="206" y2="258" stroke="#90caf9" stroke-width="1.5"/>
+      <line x1="177" y1="270" x2="205" y2="270" stroke="#90caf9" stroke-width="1.5"/>
+      <line x1="177" y1="282" x2="204" y2="282" stroke="#90caf9" stroke-width="1.5"/>
+      <rect x="166" y="234" width="7"  height="60" rx="3" fill="#0066cc"/>
+      <!-- しっぽ -->
+      <path d="M 196 258 Q 210 242 206 220" fill="none" stroke="#78909c" stroke-width="7" stroke-linecap="round"/>
+      <!-- 影 -->
+      <ellipse cx="110" cy="378" rx="98" ry="11" fill="#cfd8dc" opacity="0.5"/>
+    </svg>
+  </div>
+
+ 
+  <div class="page-header">
+    <h1>StudenTwitter</h1>
+    <h3>Tweet一覧</h3>
+  </div>
+
+  <div class="tweets-container">
+    <% @tweets.each do |t| %>
+      <div class="tweet-card">
+        
+        <div class="tweet-main-content">
+          <div class="tweet-meta">
+            <span class="tweet-user-name">👤 <%= t.user.name %></span>
+            <span class="tweet-genre">GENRE: <%= t.respond_to?(:genre) ? t.genre : "共通" %></span>
+          </div>
+
+          <h2 class="tweet-title">
+            <%= link_to tweet_path(t.id), class: "tweet-title-link" do %>
+              TITLE: <%= t.title %>
+            <% end %>
+          </h2>
+          <p class="tweet-body">CONTENTS: <%= t.contents %></p>
+
+          <div class="tweet-actions">
+            <% if user_signed_in? %>
+              <% if current_user.already_liked?(t) %>
+                <%= link_to tweet_like_path(t, current_user.likes.find_by(tweet_id: t.id)), data: { turbo_method: :delete }, class: "like-btn liked" do %>
+                  <span>❤️ いいねを取り消す</span>
+                <% end %>
+                <span class="like-count-display"><%= t.likes.count %></span>
+              <% else %>
+                <%= link_to tweet_likes_path(t), data: { turbo_method: :post }, class: "like-btn" do %>
+                  <span>🤍 いいね</span>
+                <% end %>
+                <span class="like-count-display"><%= t.likes.count %></span>
+              <% end %>
+            <% else %>
+              <span class="like-status">いいねの数: <%= t.likes.count %></span>
+            <% end %>
+          </div>
+
+          <div class="tweet-card-navigation">
+            <%= link_to "詳細を見る →", tweet_path(t.id), class: "show-link" %>
+            <% if user_signed_in? && current_user.id == t.user_id %>
+              <%= link_to "編集", edit_tweet_path(t.id), class: "edit-link" %>
+              <%= link_to "削除", tweet_path(t.id), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "delete-link" %>
+            <% end %>
+          </div>
+        </div> <% if t.image.attached? %>
+          <div class="tweet-image">
+            <%= image_tag t.image %>
+          </div>
+        <% end %>
+
+      </div> <% end %> </div>
+</div>

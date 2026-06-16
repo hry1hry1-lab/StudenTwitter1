@@ -1,0 +1,98 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+/* ==========================================
+   全体・ベースのスタイル
+   ========================================== */
+body {
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  background-color: #f4f7f9; /* ほんのり青みがかった、さわやかな背景グレー */
+  color: #333333;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  max-width: 1000px;  /* コンテンツの最大幅 */
+  margin: 0 auto;     /* 画面中央に寄せる */
+  padding: 30px 20px;
+}
+
+/* 共通のリンクスタイル */
+a {
+  color: #0084ff;     /* さわやかなメインの青 */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+a:visited {
+  color: #0084ff;     /* 一度クリックしても色が変わらないように固定 */
+}
+a:hover {
+  color: #0056b3;     /* マウスを乗せたら少し濃い青に */
+  text-decoration: underline;
+}
+
+/* ==========================================
+   ヘッダーのスタイル（4分割）
+   ========================================== */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 65px;
+  background-color: #ffffff; /* ヘッダー本体は清潔感のある白 */
+  border-bottom: 2px solid #e1e9f0; /* 下部にうっすら爽やかな青グレーの線 */
+  box-sizing: border-box;
+  padding: 0 15px;
+}
+
+.header-item {
+  flex: 1;
+  text-align: center;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ロゴの特別な調整 */
+.header-logo {
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: #0084ff !important; /* ロゴは常に鮮やかな青 */
+  letter-spacing: 0.5px;
+}
+
+/* ヘッダー内の検索フォーム */
+.header-item form {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.header-item input[type="text"] {
+  padding: 6px 10px;
+  border: 1px solid #ced4da;
+  border-radius: 20px; /* 角を丸くして今風に */
+  outline: none;
+  font-size: 0.9rem;
+}
+.header-item input[type="text"]:focus {
+  border-color: #0084ff; /* フォーム入力時に青く光らせる */
+}
+.header-item input[type="submit"] {
+  background-color: #0084ff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+.header-item input[type="submit"]:hover {
+  background-color: #0066cc;
+}
+

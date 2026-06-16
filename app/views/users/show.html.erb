@@ -1,0 +1,69 @@
+<div class="user-profile-page">
+  <div class="page-header">
+    <h1>StudenTwitter</h1>
+    <h3>マイプロフィール</h3>
+  </div>
+
+  <div class="profile-container">
+    <div class="profile-card">
+      <div class="profile-details">
+        <p class="profile-item"><span class="profile-label">👤 名前 :</span> <%= @user.name %></p>
+        <p class="profile-item"><span class="profile-label">✉️ メールアドレス :</span> <%= @user.email %></p>
+        <p class="profile-item profile-bio"><span class="profile-label">📝 プロフィール :</span><br><%= @user.profile %></p>
+      </div>
+
+      <% if current_user.id == @user.id %>
+        <div class="profile-actions">
+          <%= link_to "編集する", edit_user_registration_path, class: "profile-edit-btn" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="user-tweets-section">
+      <h2 class="section-title">ユーザーの投稿一覧</h2>
+      <div class="tweets-container">
+        <% if @user.tweets.any? %>
+          <% @user.tweets.each do |t| %>
+            <div class="tweet-card">
+              <div class="tweet-meta">
+                <span class="tweet-user-name">👤 <%= t.user.name %></span>
+              </div>
+              <p class="tweet-body"><%= t.contents %></p>
+              <div class="tweet-card-navigation">
+                <%= link_to "詳細を見る →", tweet_path(t.id), class: "show-link" %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <p class="empty-notice">まだ投稿がありません。</p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="user-likes-section">
+      <h2 class="section-title">ユーザーがいいねした投稿一覧</h2>
+      <div class="tweets-container">
+        <% if @user.liked_tweets.any? %>
+          <% @user.liked_tweets.each do |t| %>
+            <div class="tweet-card">
+              <div class="tweet-meta">
+                <span class="tweet-user-name">👤 <%= t.user.name %></span>
+              </div>
+              <p class="tweet-body"><%= t.contents %></p>
+              <div class="tweet-card-navigation">
+                <%= link_to "詳細を見る →", tweet_path(t.id), class: "show-link" %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <p class="empty-notice">いいねした投稿がまだありません。</p>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-navigation">
+    <%= link_to "← Tweet一覧に戻る", tweets_path, class: "back-link" %>
+  </div>
+</div>

@@ -1,0 +1,102 @@
+/* ページ全体のセンタリング */
+.form-page-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 0 16px;
+  font-family: sans-serif;
+}
+
+/* ヘッダーの装飾 */
+.form-page-container .page-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.form-page-container .page-header h1 {
+  font-size: 24px;
+  color: #333;
+  letter-spacing: 1px;
+}
+.form-page-container .page-header h3 {
+  font-size: 16px;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* フォームを囲む白いカード */
+.form-card {
+  background: #fff;
+  border: 1px solid #e1e8ed;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* 各入力項目の縦並び設定 */
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+/* テキストフィールド、セレクトボックスの共通スタイリング */
+.form-control {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box; /* 枠線を含んだサイズ計算 */
+  transition: border-color 0.2s;
+}
+.form-control:focus {
+  outline: none;
+  border-color: #1da1f2; /* Twitter風のライトブルー */
+}
+
+/* ファイル選択部分の微調整 */
+.form-controlfile {
+  display: block;
+  width: 100%;
+  font-size: 14px;
+  color: #555;
+}
+
+/* 投稿ボタンの装飾 */
+.form-actions {
+  margin-top: 28px;
+}
+.btn-submit {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #1da1f2;
+  color: #fff;
+  border: none;
+  border-radius: 24px; /* 丸みを持たせたボタン */
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.btn-submit:hover {
+  background-color: #1a91da;
+}
+
+/* 戻るリンクの装飾 */
+.page-footer-links {
+  text-align: center;
+  margin-top: 20px;
+}
+.back-link {
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+}
+.back-link:hover {
+  text-decoration: underline;
+}

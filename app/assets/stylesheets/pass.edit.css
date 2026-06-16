@@ -1,0 +1,98 @@
+/* ==========================================
+   パスワード変更ページ（edit.html.erb）のスタイル
+   ========================================== */
+.password-change-page {
+  max-width: 500px; /* フォーム画面として見やすい幅に制限 */
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.password-change-page .page-header {
+  margin-bottom: 25px;
+  text-align: center; /* フォーム画面なので中央寄せ */
+}
+
+/* フォームを包むカード */
+.password-form-container .password-card {
+  background-color: #ffffff;
+  border: 1px solid #e1e9f0;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 入力項目のグループ */
+.password-form-container .form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ラベル表記 */
+.password-form-container .form-label {
+  font-weight: bold;
+  font-size: 0.95rem;
+  color: #2b3d51; /* 落ち着いたネイビー */
+}
+
+/* パスワードの文字数制限ヒント */
+.password-form-container .password-hint {
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin-top: -2px;
+}
+
+/* 入力フォーム（詳細ページのtextareaの挙動を踏襲） */
+.password-form-container .form-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ced4da;
+  border-radius: 12px; /* カードに合わせた角丸 */
+  font-family: inherit;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.password-form-container .form-input:focus {
+  border-color: #0084ff; /* フォーカス時は爽やかなブルー */
+}
+
+/* 送信ボタン（詳細ページのコメント送信ボタンのデザインと統一） */
+.password-form-container .password-submit-btn {
+  background-color: #0084ff;
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 24px; /* 丸みのあるボタン */
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.95rem;
+  width: 100%; /* モバイル・PC問わず押しやすいように全幅化 */
+  transition: background-color 0.2s;
+  text-align: center;
+}
+
+.password-form-container .password-submit-btn:hover {
+  background-color: #0066cc;
+}
+
+/* エラーメッセージがある場合の枠（詳細ページのコメント欄を参考） */
+.password-form-container .error-explanation-box {
+  background-color: #fff0f3;
+  border-left: 4px solid #dc3545;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 0.9rem;
+  color: #dc3545;
+}
+
+/* 下部リンクの調整 */
+.password-change-page .page-navigation {
+  margin-top: 20px;
+  justify-content: center;
+}
