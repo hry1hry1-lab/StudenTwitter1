@@ -136,39 +136,44 @@ h2 {
   object-fit: cover; /* 枠線に合わせて綺麗に収める場合 */
   border-radius: 8px; /* 好みで角を丸くする */
 }
-
-/*show.html.erb*/
 /* ==========================================
    詳細ページ（show.html.erb）の全体レイアウト
    ========================================== */
 .tweet-show-page {
   max-width: 1100px;
   margin: 0 auto;
+  padding: 20px;
 }
 
-.tweet-show-page .page-header {
-  margin-bottom: 25px;
+.tweet-show-page .page-header h1 {
+  font-size: 2rem;
+  color: #1da1f2; /* Twitterライクなブルー */
+  margin-bottom: 5px;
 }
 
-/* 左右2カラムの配置（PCでは横並び、スマホでは自動で縦並び） */
+.tweet-show-page .page-header h3 {
+  font-size: 1rem;
+  color: #657786;
+  margin-top: 0;
+}
+
+/* 左右2カラム配置 */
 .show-container {
   display: flex;
   gap: 30px;
   flex-wrap: wrap; 
 }
 
-/* 左側：ツイート詳細情報のエリア */
 .tweet-main-content {
-  flex: 1;
+  flex: 1.2; /* ツイート側を少し広めに */
   min-width: 320px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* 右側：メインとなるコメントエリア（1.5倍広くして主役に） */
 .comment-section {
-  flex: 1.5;
+  flex: 1;
   min-width: 350px;
   background-color: #ffffff;
   border: 1px solid #e1e9f0;
@@ -178,109 +183,134 @@ h2 {
 }
 
 /* ==========================================
-   左側：ツイートカード・いいね周辺のスタイル
+   左側：洗練されたツイートカードのスタイル
    ========================================== */
 .tweet-card {
   background-color: #ffffff;
   border: 1px solid #e1e9f0;
   border-radius: 16px;
-  padding: 25px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
 }
 
-.tweet-meta {
+/* カード上部：タグと時間を横並びにすっきり配置 */
+.tweet-card-header {
   display: flex;
   justify-content: space-between;
-  font-size: 0.8rem;
-  color: #888888;
-  margin-bottom: 15px;
+  align-items: center;
+  border-bottom: 1px solid #f0f4f8;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
 }
 
 .tweet-genre {
-  background-color: #e3f2fd;
-  color: #0084ff;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-weight: bold;
+  background-color: #e8f5fe;
+  color: #1da1f2;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
 }
 
 .tweet-time {
   font-size: 0.85rem;
-  color: #6c757d;
+  color: #657786;
+}
+
+/* カード中部：タイトルと本文のフォントメリハリ */
+.tweet-card-body {
+  margin-bottom: 25px;
 }
 
 .tweet-title {
-  font-size: 1.4rem;
-  color: #2b3d51;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #14171a;
   margin: 0 0 15px 0;
+  line-height: 1.3;
 }
 
-.tweet-body {
-  font-size: 1.05rem;
+.tweet-content-text {
+  font-size: 1.1rem;
   line-height: 1.6;
   color: #333333;
   white-space: pre-wrap;
-  margin-bottom: 20px;
+  word-wrap: break-word;
 }
 
-/* いいねボタンと数値の横並び調整 */
+/* アクション：いいねまわり */
 .tweet-actions {
   display: flex;
   align-items: center;
   gap: 12px;
+  border-top: 1px solid #f0f4f8;
+  border-bottom: 1px solid #f0f4f8;
+  padding: 12px 0;
+  margin-bottom: 20px;
 }
 
-/* いいねボタン単体 */
 .like-btn {
   display: inline-flex;
   align-items: center;
   background-color: #f8f9fa;
   border: 1px solid #e1e9f0;
-  padding: 8px 16px;
-  border-radius: 20px;
+  padding: 8px 18px;
+  border-radius: 24px;
   font-weight: bold;
+  font-size: 0.9rem;
   color: #555555 !important;
   text-decoration: none;
   transition: all 0.2s ease;
 }
+
 .like-btn:hover {
   background-color: #ffeef2;
   border-color: #ffa8b6;
 }
+
 .like-btn.liked {
   background-color: #ffeef2;
   border-color: #ffa8b6;
   color: #e0245e !important;
 }
 
-/* 完全に分離させた独立した数字デザイン */
-.like-count-display {
+.heart-icon {
+  margin-right: 4px;
   font-size: 1rem;
+}
+
+.like-count-display {
+  font-size: 0.95rem;
   font-weight: bold;
   color: #e0245e;
   background-color: #fff0f3;
-  padding: 4px 12px;
-  border-radius: 12px;
-  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
 }
 
 .like-status {
-  font-size: 0.9rem;
-  color: #6c757d;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #657786;
 }
 
-/* いいねしたユーザー一覧ボックス */
+/* いいねしたユーザー一覧 */
 .liked-users-box {
-  background-color: #ffffff;
-  border: 1px solid #e1e9f0;
+  background-color: #f8fafc;
   border-radius: 12px;
   padding: 15px;
 }
+
 .liked-users-box h4 {
   margin: 0 0 10px 0;
-  font-size: 0.9rem;
-  color: #6c757d;
+  font-size: 0.85rem;
+  color: #657786;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
+
 .liked-users-box ul {
   list-style: none;
   padding: 0;
@@ -289,162 +319,262 @@ h2 {
   flex-wrap: wrap;
   gap: 8px;
 }
+
 .liked-users-box li {
-  background-color: #f1f3f5;
-  padding: 4px 10px;
+  background-color: #ffffff;
+  border: 1px solid #e1e9f0;
+  padding: 4px 12px;
   border-radius: 15px;
   font-size: 0.85rem;
   color: #495057;
+  font-weight: 500;
 }
+
 .liked-users-box li.no-users {
+  border: none;
   background: none;
-  color: #adb5bd;
+  color: #aab8c2;
   padding: 0;
 }
 
-/* ==========================================
-   右側：コメント機能関連のスタイル
-   ========================================== */
-.section-title {
-  font-size: 1.2rem;
-  color: #2b3d51;
-  margin-top: 0;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #0084ff;
-  padding-bottom: 10px;
-}
-
-.comments-list {
-  max-height: 420px;
-  overflow-y: auto;
-  margin-bottom: 20px;
-}
-
-.comment-item {
-  background-color: #f8fafc;
-  border-radius: 12px;
-  padding: 15px;
-  margin-bottom: 12px;
-  border-left: 4px solid #0084ff;
-}
-
-.comment-user {
-  font-weight: bold;
-  font-size: 0.85rem;
-  color: #0084ff;
-  margin-bottom: 5px;
-}
-
-.comment-content {
-  font-size: 0.95rem;
-  color: #333333;
-  line-height: 1.4;
-}
-
-/* 【画像を使わない新しいデザイン】誰もコメントしていないときの案内枠 */
-.empty-comment-placeholder {
-  text-align: center;
-  padding: 40px 20px;
-  background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%); /* さわやかな淡い水色のグラデーション */
-  border-radius: 16px;
-  border: 2px dashed #a5d8ff; /* 爽やかなライトブルーの点線枠 */
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.01);
-  margin: 20px 0;
-}
-
-/* 中央に表示する大きめの吹き出し絵文字 */
-.placeholder-icon {
-  font-size: 3.2rem;
-  margin-bottom: 12px;
-  animation: pulse 2s infinite; /* ほんのり鼓動のように動かすアニメーション */
-  display: inline-block;
-}
-
-.placeholder-text {
-  font-size: 1.05rem;
-  color: #495057;
-  line-height: 1.6;
-  margin: 0;
-}
-
-.placeholder-text strong {
-  color: #0084ff;
-  font-size: 1.2rem;
-  display: inline-block;
-  margin-top: 6px;
-}
-
-/* 絵文字をふわふわ動かすCSSアニメーションの定義 */
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
-
-/* コメント入力エリア */
-.comment-form-area textarea {
-  width: 100%;
-  height: 90px;
-  padding: 12px;
-  border: 1px solid #ced4da;
-  border-radius: 12px;
-  resize: none;
-  font-family: inherit;
-  font-size: 0.95rem;
-  box-sizing: border-box;
-  margin-bottom: 12px;
-  outline: none;
-  transition: border-color 0.2s;
-}
-.comment-form-area textarea:focus {
-  border-color: #0084ff;
-}
-
-.comment-submit-btn {
-  background-color: #0084ff;
-  color: #ffffff;
-  border: none;
-  padding: 10px 22px;
-  border-radius: 24px;
-  font-weight: bold;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.95rem;
-  transition: background-color 0.2s;
-}
-.comment-submit-btn:hover {
-  background-color: #0066cc;
-}
-
-.login-notice {
-  font-size: 0.9rem;
-  color: #6c757d;
-  text-align: center;
-  background-color: #f8f9fa;
-  padding: 10px;
-  border-radius: 8px;
-}
-
-/* ==========================================
-   ページ下部ナビゲーション
-   ========================================== */
+/* ページナビゲーション */
 .page-navigation {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  padding: 0 5px;
 }
+
 .back-link {
-  color: #6c757d;
+  color: #657786;
   font-size: 0.9rem;
-  font-weight: bold;
+  font-weight: 700;
+  text-decoration: none;
 }
+
 .back-link:hover {
-  color: #333333;
+  color: #14171a;
 }
+
 .edit-link {
-  color: #0084ff;
+  color: #1da1f2;
   font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.edit-link:hover {
+  color: #0d8bd9;
+}
+
+/* ==========================================
+   フォーム・編集ページ（edit.html.erb）のスタイル
+   ========================================== */
+
+.tweet-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #2b3d51;
+}
+
+/* 入力要素の共通スタイル */
+.form-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e1e9f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333333;
+  background-color: #f8fafc;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #1da1f2;
+  box-shadow: 0 0 0 3px rgba(29, 161, 242, 0.1);
+  background-color: #ffffff;
+}
+
+/* テキストエリアの高さ指定 */
+.textarea-input {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* セレクトボックスの調整 */
+.select-input {
+  cursor: pointer;
+  appearance: none; /* デフォルトの矢印をリセット（環境による） */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23657786' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+/* 送信ボタンのスタイル（like-btnのテイストを流用） */
+.form-actions {
+  margin-top: 10px;
+  border-top: 1px solid #f0f4f8;
+  padding-top: 20px;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  background-color: #1da1f2;
+  color: #ffffff;
+  border: none;
+  padding: 12px;
+  border-radius: 24px;
+  font-size: 1rem;
   font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover {
+  background-color: #0d8bd9;
+}
+/* ==========================================
+   追加：ヘッダーナビゲーション（ログアウト等）
+   ========================================== */
+.user-nav {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  font-size: 0.9rem;
+}
+
+.nav-user-info {
+  color: #657786;
+  font-weight: 500;
+}
+
+.logout-link {
+  color: #dc3545;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 6px 16px;
+  border: 1px solid #dc3545;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+}
+
+.logout-link:hover {
+  background-color: #fff5f5;
+  text-decoration: none;
+}
+
+.login-link {
+  color: #1da1f2;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 6px 16px;
+  border: 1px solid #1da1f2;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+}
+
+.login-link:hover {
+  background-color: #f0f8ff;
+  text-decoration: none;
+}
+
+/* ==========================================
+   追加：フォーム・編集ページ（edit.html.erb）用
+   ========================================== */
+.tweet-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #2b3d51;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e1e9f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333333;
+  background-color: #f8fafc;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #1da1f2;
+  box-shadow: 0 0 0 3px rgba(29, 161, 242, 0.1);
+  background-color: #ffffff;
+}
+
+.textarea-input {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.select-input {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23657786' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+.form-actions {
+  margin-top: 10px;
+  border-top: 1px solid #f0f4f8;
+  padding-top: 20px;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  background-color: #1da1f2;
+  color: #ffffff;
+  border: none;
+  padding: 12px;
+  border-radius: 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover {
+  background-color: #0d8bd9;
 }

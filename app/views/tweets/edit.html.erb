@@ -1,16 +1,47 @@
-<%= form_for @tweet do |f| %>
-  <%= f.label :contents %>
-    <div class="field">
-    <%= f.label :genre  %>
-    <%= f.select :genre, 
-    [["食事編", "食事編"], 
-    ["生活編", "生活編"],["その他", "その他"] 
-    ], include_blank: "選択して下さい" %>
+<div class="tweets-index-page tweet-show-page">
+
+  <div class="page-header">
+    <h1>StudenTwitter</h1>
+    <h3>Tweetの編集</h3>
   </div>
-    <div><%= f.text_area :title, :size => "30x1" %></div>
-    <div> <%= f.text_area :contents, :size => "30x2" %></div>
-   
- 
-  <%= f.submit "編集する" %>
-<% end %>
-<%= link_to "編集せずに戻る", tweets_path %>
+
+  <div class="show-container">
+    <div class="tweet-main-content">
+      <div class="tweet-card">
+        
+        <%= form_for @tweet, html: { class: "tweet-form" } do |f| %>
+          
+          <div class="form-group">
+            <%= f.label :genre, "ジャンル", class: "form-label" %>
+            <div class="select-wrapper">
+              <%= f.select :genre, 
+                [["食事編", "食事編"], ["生活編", "生活編"], ["その他", "その他"]], 
+                { include_blank: "選択して下さい" }, 
+                { class: "form-input select-input" } %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :title, "タイトル", class: "form-label" %>
+            <%= f.text_field :title, class: "form-input text-input", placeholder: "タイトルを入力してください" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :contents, "内容", class: "form-label" %>
+            <%= f.text_area :contents, class: "form-input textarea-input", placeholder: "内容を入力してください" %>
+          </div>
+          
+          <div class="form-actions">
+            <%= f.submit "編集する", class: "submit-btn" %>
+          </div>
+        <% end %>
+
+      </div>
+
+      <div class="page-navigation">
+        <%= link_to "← 編集せずに戻る", tweets_path, class: "back-link" %>
+      </div>
+    </div>
+  </div>
+
+</div>

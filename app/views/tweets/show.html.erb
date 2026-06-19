@@ -7,54 +7,58 @@
   <div class="show-container">
     
     <div class="tweet-main-content">
+      
       <div class="tweet-card">
-        <div class="tweet-meta">
-          <span class="tweet-genre">GENRE: <%= @tweet.respond_to?(:genre) ? @tweet.genre : "共通" %></span>
-          <span class="tweet-time">TIME: <%= @tweet.created_at.strftime('%Y/%m/%d %H:%M') %></span>
+        
+        <div class="tweet-card-header">
+          <span class="tweet-genre">#<%= @tweet.respond_to?(:genre) ? @tweet.genre : "共通" %></span>
+          <span class="tweet-time"><%= @tweet.created_at.strftime('%Y/%m/%d %H:%M') %></span>
         </div>
-        <h2 class="tweet-title">TITLE: <%= @tweet.title %></h2>
-        <p class="tweet-body">CONTENTS: <%= @tweet.contents %></p>
 
-  <div class="tweet-actions">
-    <% if user_signed_in? %>
-      <% if current_user.already_liked?(@tweet) %>
-        <%= link_to tweet_like_path(@tweet), data: { turbo_method: :delete }, class: "like-btn liked" do %>
-          <span>❤️ いいねを取り消す</span>
-        <% end %>
-          <span class="like-count-display"><%= @tweet.likes.count %></span>
-        <% else %>
-            <%= link_to tweet_likes_path(@tweet), data: { turbo_method: :post }, class: "like-btn" do %>
-        <span>🤍 いいね</span>
-      <% end %>
-        <span class="like-count-display"><%= @tweet.likes.count %></span>
-    <% end %>
-    <% else %>
-     <span class="like-status">いいねの数: <%= @tweet.likes.count %></span>
-  <% end %>
-</div>
+        <div class="tweet-card-body">
+          <h2 class="tweet-title"><%= @tweet.title %></h2>
+          <div class="tweet-content-text"><%= @tweet.contents %></div>
+        </div>
 
-      <div class="liked-users-box">
-        <h4>いいねしたユーザー</h4>
-        <ul>
-          <% if @tweet.liked_users.any? %>
-            <% @tweet.liked_users.each do |user| %>
-              <li><%= user.name %></li>
+        <div class="tweet-actions">
+          <% if user_signed_in? %>
+            <% if current_user.already_liked?(@tweet) %>
+              <%= link_to tweet_like_path(@tweet), data: { turbo_method: :delete }, class: "like-btn liked" do %>
+                <span class="heart-icon">❤️</span> いいねを取り消す
+              <% end %>
+              <span class="like-count-display"><%= @tweet.likes.count %></span>
+            <% else %>
+              <%= link_to tweet_likes_path(@tweet), data: { turbo_method: :post }, class: "like-btn" do %>
+                <span class="heart-icon">🤍</span> いいね
+              <% end %>
+              <span class="like-count-display"><%= @tweet.likes.count %></span>
             <% end %>
           <% else %>
-            <li class="no-users">まだいいねされていません</li>
+            <span class="like-status">❤️ <%= @tweet.likes.count %> いいね</span>
           <% end %>
-        </ul>
-      </div>
-      
-      <div class="page-navigation">
+        </div>
+
+        <div class="liked-users-box">
+          <h4>いいねしたユーザー</h4>
+          <ul>
+            <% if @tweet.liked_users.any? %>
+              <% @tweet.liked_users.each do |user| %>
+                <li><%= user.name %></li>
+              <% end %>
+            <% else %>
+              <li class="no-users">まだいいねされていません</li>
+            <% end %>
+          </ul>
+        </div>
+        
+      </div> <div class="page-navigation">
         <%= link_to "← Tweet一覧に戻る", tweets_path, class: "back-link" %>
         <% if user_signed_in? && current_user.id == @tweet.user_id %>
           <%= link_to "編集する", edit_tweet_path(@tweet.id), class: "edit-link" %>
         <% end %>
       </div>
-    </div>
-
-    <div class="comment-section">
+      
+    </div> <div class="comment-section">
       <h3 class="section-title">💬 コメント一覧 (<%= @comments.count %>)</h3>
       
       <div class="comments-list">
@@ -88,7 +92,5 @@
       <% else %>
         <p class="login-notice">※コメントするにはログインが必要です</p>
       <% end %>
-    </div>
-
-  </div>
-</div>
+      
+    </div> </div> </div>
